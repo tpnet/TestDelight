@@ -1,0 +1,20 @@
+
+CREATE TABLE program (
+    
+
+    _id INTEGER AS Integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+
+    downLink TEXT UNIQUE,   
+
+    name TEXT
+
+);
+
+
+selectDownName:
+SELECT program.name FROM program WHERE downLink = ?;
+
+
+
+insertProgram:
+INSERT OR REPLACE INTO program (downLink,name) VALUES (?,?);
