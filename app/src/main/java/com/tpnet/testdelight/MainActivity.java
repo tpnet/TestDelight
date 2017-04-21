@@ -1,5 +1,6 @@
 package com.tpnet.testdelight;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -60,10 +61,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SqlDelightStatement sqlDelightStatement = Program.FACTORY.selectDownName("link");
         
         db.createQuery(Program.TABLE_NAME,sqlDelightStatement.statement,sqlDelightStatement.args)
-                .map(new Func1<SqlBrite.Query, String>() {
+                .mapToOne(new Func1<Cursor, String>() {
                     @Override
-                    public String call(SqlBrite.Query query) {
-                        return Program.ROW_NAMW_MAPPER.map(query.run());
+                    public String call(Cursor cursor) {
+                        return Program.ROW_NAMW_MAPPER.map(cursor);
                     }
                 })
                 .subscribe(new Action1<String>() {
